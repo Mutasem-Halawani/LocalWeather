@@ -13,8 +13,7 @@
 })();
 
 function showPosition(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+    let {latitude,longitude} = position.coords;
     getLocationWeather(latitude,longitude);
 }
 
@@ -31,8 +30,7 @@ $.ajax({
  return false;
 }
 function setData(data){
-    let temperature = data.currently.temperature;
-    let summary = data.currently.summary;
+    let {temperature,summary} = data.currently;
     $('#temperature').text(temperature);
     $('#summary').text(summary);
     getCityName();
