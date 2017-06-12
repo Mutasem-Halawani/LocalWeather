@@ -30,12 +30,9 @@ $.ajax({
  return false;
 }
 function setData(data){
-    let {temperature,summary} = data.currently;
-    $('#temperature').text(temperature);
-    $('#summary').text(summary);
+    ['temperature','summary'].forEach(v => {$(`#${v}`).text(data.currently[v]);});
     getCityName();
 }
-
 // Get city name by IP
 function getCityName(){
 $.get("https://ipinfo.io", function(response) {
