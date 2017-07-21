@@ -53,13 +53,56 @@ function showAll(data,response){
     $('#location').text(response.city);
     ['temperature','summary'].forEach(v => {$(`#${v}`).text(data.currently[v]);});
     $('#location').text(response.city);
-     if (response.country === "US") {
-          $('#temperature').append("F");
-          console.log("US");
-     }
-     else { // Convert the temprature to Celsius if user is not in the US
-          let FahrenheitTemprature = parseInt($('#temperature').text());
-          let CelsiusTemprature =  Math.round((FahrenheitTemprature - 32) * .5556) ;
-          $('#temperature').text(CelsiusTemprature + "°C");
-     }
+    if (response.country === "US") {
+         $('#temperature').append("F");
+         console.log("US");
+    }
+    else { // Convert the temprature to Celsius if user is not in the US
+         let FahrenheitTemprature = parseInt($('#temperature').text());
+         let CelsiusTemprature =  Math.round((FahrenheitTemprature - 32) * .5556) ;
+         $('#temperature').text(CelsiusTemprature + "°C");
+    }
+    
+    console.log(data.currently.summary);
+    
+    //set background image
+    switch (data.currently.icon) {
+        case ('clear-night'):
+            $('body').css('background', "url('img/clear-night.jpg') no-repeat fixed center");
+            break;
+            
+        case ('clear-night'):
+            $('body').css('background', "url('img/clear-day.jpg') no-repeat fixed center");
+            break;
+            
+        case ('wind'):
+            $('body').css('background', "url('img/wind.jpg') no-repeat fixed center");
+            break;
+            
+        case ('snow','sleet'):
+            $('body').css('background', "url('img/snow.jpg') no-repeat fixed center");
+            break;
+            ;
+        case ('fog'):
+            $('body').css('background', "url('img/fog.jpg') no-repeat fixed center");
+            break;
+            
+        case ('cloudy'):
+            $('body').css('background', "url('img/cloudy.jpg') no-repeat fixed center");
+            break;
+            
+        case ('partly-cloudy-day'):
+            $('body').css('background', "url('img/partly-cloudy-day.jpg') no-repeat fixed center");
+            break;
+            
+        case ('partly-cloudy-night'):
+            $('body').css('background', "url('img/partly-cloudy-night.jpg') no-repeat fixed center");
+            break;
+            
+        default:
+            true;
+            break;
+    }
+     
+     
 }
