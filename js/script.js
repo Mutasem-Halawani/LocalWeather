@@ -24,7 +24,6 @@ function getLocationWeather(latitude,longitude){
             type: 'GET',
             crossDomain: true,
             dataType: 'jsonp',
-            success: getData,
             error: function(){alert('We seem to have an issue with Our location Service');}
     })
             .done(function(){
@@ -35,13 +34,8 @@ function getLocationWeather(latitude,longitude){
             });
 }
 
-function getData(data){
-    console.log('success');
-}
-
 function getCityName(){
 $.get("https://ipinfo.io", function(response) {
-//    console.log(response);
 $('#location').text(response.city);
     return(response);
 }, "jsonp");
@@ -49,7 +43,6 @@ $('#location').text(response.city);
 
 function showAll(data,response){
     console.log(data);
-//    console.log(response);
     $('#location').text(response.city);
     ['temperature','summary'].forEach(v => {$(`#${v}`).text(data.currently[v]);});
     $('#location').text(response.city);
@@ -63,7 +56,6 @@ function showAll(data,response){
          $('#temperature').text(CelsiusTemprature + "°C");
     }
     
-    console.log(data.currently.summary);
     
     //set background image
     switch (data.currently.icon) {
@@ -71,7 +63,7 @@ function showAll(data,response){
             $('body').css('background', "url('img/clear-night.jpg') no-repeat fixed center");
             break;
             
-        case ('clear-night'):
+        case ('clear-day'):
             $('body').css('background', "url('img/clear-day.jpg') no-repeat fixed center");
             break;
             
